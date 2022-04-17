@@ -1,0 +1,12 @@
+[Unit]
+Description=rutas vpn
+After=network-online.target
+
+[Service]
+Restart=always
+ExecStart=/bin/bash /usr/local/bin/rutasvpn
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

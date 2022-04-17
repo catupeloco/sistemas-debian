@@ -1,0 +1,72 @@
+echo - Audacity, vocalcom, telefono y configurar
+cd /etc/skel/Escritorio/ 2>/dev/null >/dev/null
+rm balat.desktop  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/audacity.desktop 2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/vocalcom.desktop  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/telefono.desktop  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/configurar.desktop  2>/dev/null >/dev/null
+cd /etc/skel/.config/autostart/
+rm balat.desktop  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/configurar.desktop  2>/dev/null >/dev/null
+cd /home/soporte
+wget -N https://balat.com.ar/debian/vocal/balat  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/balat.fer  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/fullvocal.tar.gz  2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/vocal/rutavocal  2>/dev/null >/dev/null
+chmod +x /home/soporte/balat
+chmod +x /home/soporte/balat.fer
+chmod +x /home/soporte/rutavocal
+cd /usr/local/bin/
+wget -N https://balat.com.ar/debian/vocal/fullvocal  2>/dev/null >/dev/null
+chmod +x /usr/local/bin/fullvocal
+cd /etc/skel
+tar xzvf /home/soporte/fullvocal.tar.gz   2>/dev/null >/dev/null
+fullvocal
+
+
+cd /etc/systemd/system/
+wget -N https://balat.com.ar/debian/vocal/rutavocal.service  2>/dev/null >/dev/null
+chmod +x rutavocal.service
+
+systemctl enable rutavocal.service  2>/dev/null >/dev/null
+systemctl start rutavocal.service  2>/dev/null >/dev/null
+
+
+echo - Disketera
+rm /home/soporte/chaufloppy
+cat <<EOT >> /home/soporte/chaufloppy
+lsmod | grep -i floppy
+rmmod floppy
+echo "blacklist floppy" > /etc/modprobe.d/blacklistfloppy.conf
+cp /boot/initrd.img-$(uname -r) /boot/initrd.img-$(uname -r).backup
+update-initramfs -u
+reboot
+EOT
+
+chmod +x /home/soporte/chaufloppy
+
+echo - Agregando comando test
+echo wget -qO- https://balat.com.ar/debian/vocalcom \| bash > /usr/local/bin/vocal
+chmod +x /usr/local/bin/vocal 2>/dev/null >/dev/null
+
+chmod +x -R /etc/skel 2>/dev/null >/dev/null
+chmod +r -R /etc/skel 2>/dev/null >/dev/null
+
+#echo - Sysop
+#sed -i '/login_sysop/s/^/\#/' /home/soporte/balat  > /dev/null 2> /dev/null
+#echo - Host Sit6
+#sudo sed -i '/192.1.2.71	sit6.dialdata.com.ar	sit6/c\192.1.2.70	sit6.dialdata.com.ar	sit6' /etc/hosts 2>/dev/null >/dev/null
+#fullscreen
+#sed -i '/gui_show_call_osd=no/c\gui_show_call_osd=yes' /home/soporte/balat  > /dev/null 2> /dev/null
+#cd /root
+#wget -N https://balat.com.ar/debian/run_this_at_startup.sh  2>/dev/null >/dev/null
+#cd /etc/systemd/system/
+#wget -N https://balat.com.ar/debian/rc-local.service  2>/dev/null >/dev/null
+#cd /etc
+#wget -N https://balat.com.ar/debian/rc.local  2>/dev/null >/dev/null
+#chmod +x /root/run_this_at_startup.sh
+#chmod +x /etc/rc.local
+#chmod +x /home/soporte/balat.vocalcom
+#systemctl enable rc-local
+#systemctl start rc-local.service
+

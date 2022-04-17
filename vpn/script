@@ -1,0 +1,11 @@
+apt-get install dos2unix -y
+cd /etc/systemd/system/
+wget -N https://balat.com.ar/debian/vpn/rutasvpn.service
+dos2unix rutasvpn.service
+chmod +x rutasvpn.service
+cd /usr/local/bin/
+wget -N https://balat.com.ar/debian/vpn/rutasvpn
+dos2unix rutasvpn
+chmod +x rutasvpn
+systemctl enable rutasvpn.service
+systemctl start rutasvpn.service

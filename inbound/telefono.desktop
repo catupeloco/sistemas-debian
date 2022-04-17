@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Telefono
+Comment=
+Exec=twinkle
+Icon=audio-headset
+Path=/tmp
+Terminal=false
+StartupNotify=true
+Hidden=false

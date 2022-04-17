@@ -1,0 +1,9 @@
+echo escriba nombre pc:
+read nombre
+echo escriba 70 o 71
+read sit6
+echo 127.0.0.1	localhost > /etc/hosts
+echo 127.0.1.1	$nombre.dialdata.com.ar	$nombre >> /etc/hosts
+echo 192.1.2.$sit6	sit6.dialdata.com.ar	sit6 >> /etc/hosts
+echo $nombre > /etc/hostname
+init 6

@@ -1,0 +1,12 @@
+[Unit]
+Description=rutas pbx1
+After=network-online.target
+
+[Service]
+Restart=always
+ExecStart=/bin/bash /home/soporte/rutapbx1
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=rutas vocalcom
+After=network-online.target
+
+[Service]
+Restart=always
+ExecStart=/bin/bash /home/soporte/rutavocal
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Vocalcom
+Exec=/usr/lib/firefox-esr/firefox-esr http://10.37.100.233/hermes_net_v5/Admin/Launcher/launcher.aspx
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=firefox-esr
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/v$
+StartupWMClass=Firefox-esr
+StartupNotify=falso
+Path=

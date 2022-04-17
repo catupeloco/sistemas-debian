@@ -1,0 +1,64 @@
+#apt-get update
+#apt-get install curl -y
+mkdir /home/soporte  2>/dev/null >/dev/null
+
+echo - Favoritos
+cd /home
+wget -N https://balat.com.ar/debian/places.sqlite 2>/dev/null >/dev/null
+rm /etc/skel/.mozilla/firefox/lmd3ccyv.default/places.sqlite 2>/dev/null >/dev/null
+cp /home/places.sqlite /etc/skel/.mozilla/firefox/lmd3ccyv.default/places.sqlite 2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/places.sqlite2 2>/dev/null >/dev/null
+rm /etc/skel/.mozilla/firefox/wgnppejp.default/places.sqlite 2>/dev/null >/dev/null
+cp /home/places.sqlite2 /etc/skel/.mozilla/firefox/wgnppejp.default/places.sqlite 2>/dev/null >/dev/null
+
+echo - Bomgar
+cd /home
+wget -N https://balat.com.ar/debian/bomgar.tar.gz 2>/dev/null >/dev/null
+cd /
+tar xzvf /home/bomgar.tar.gz 2>/dev/null >/dev/null
+
+echo - Cambianombre
+cd /usr/local/bin/ 2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/cambionombrepc 2>/dev/null >/dev/null
+chmod +x /usr/local/bin/cambionombrepc 2>/dev/null >/dev/null
+
+echo - Host Sit6
+sudo sed -i '/192.1.2.71	sit6.dialdata.com.ar	sit6/c\192.1.2.70	sit6.dialdata.com.ar	sit6' /etc/hosts 2>/dev/null >/dev/null
+
+echo - Autostartup
+sudo sed -i '/Terminal=true/c\Terminal=false' /etc/skel/.config/autostart/balat.desktop 2>/dev/null >/dev/null
+
+
+echo - Balat twinkle
+cd /home/soporte/ 2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/balat 2>/dev/null >/dev/null
+chmod +x /home/soporte/balat 2>/dev/null >/dev/null
+
+
+echo - Audacity
+cd /etc/skel/Escritorio/ 2>/dev/null >/dev/null
+wget -N https://balat.com.ar/debian/audacity.desktop 2>/dev/null >/dev/null
+
+
+
+echo - Disketera
+rm /home/soporte/chaufloppy
+cat <<EOT >> /home/soporte/chaufloppy
+lsmod | grep -i floppy
+rmmod floppy
+echo "blacklist floppy" > /etc/modprobe.d/blacklistfloppy.conf
+cp /boot/initrd.img-$(uname -r) /boot/initrd.img-$(uname -r).backup
+update-initramfs -u
+reboot
+EOT
+
+chmod +x /home/soporte/chaufloppy
+
+
+echo - Agregando comando update
+echo bash <(wget -qO- https://balat.com.ar/debian/update) > /usr/local/bin/update
+chmod +x /usr/local/bin/update 2>/dev/null >/dev/null
+
+
+
+

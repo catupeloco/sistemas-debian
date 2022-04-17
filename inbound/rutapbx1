@@ -1,0 +1,3 @@
+#!/bin/sh
+/bin/ip route add 162.254.205.91/32 via 192.1.5.192
+exit 22

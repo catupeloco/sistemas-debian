@@ -1,0 +1,6 @@
+#!/bin/sh
+/bin/ip route add 172.16.0.0/23 via 192.1.5.190
+/bin/ip route add 172.16.2.0/23 via 192.1.5.191
+/bin/ip route add 172.16.4.0/23 via 192.1.5.192
+/bin/ip route add 172.16.6.0/23 via 192.1.5.193
+exit 22

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Test_Vincha
+GenericName=Sound Editor
+Comment=Record and edit audio files
+Icon=audacity
+Type=Application
+Categories=AudioVideo;Audio;AudioVideoEditing;
+NoDisplay=1
+Exec=/usr/bin/audacity
+StartupNotify=false
+Terminal=false

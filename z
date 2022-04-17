@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+echo "echo - Montando Z
+mkdir /home/\$USER/Escritorio/Z > /dev/null 2>&1
+sudo umount /home/\$USER/Escritorio/Z > /dev/null 2>&1
+sudo umount /home/\$USER/Escritorio/Z > /dev/null 2>&1
+password=\$(whiptail --passwordbox \"Escriba su password de Z\" 10 35 --nocancel 3>&1 1>&2 2>&3)
+sudo mount -t cifs -o username=\$USER,password=\$password,uid=\$USER,gid=\$USER,forceuid,forcegid,vers=2.0 //192.1.1.2/Datos /home/\$USER/Escritorio/Z > /dev/null 2>&1" > /usr/local/bin/z
+chmod +x /usr/local/bin/z
+
+echo "[Desktop Entry]
+Encoding=UTF-8
+Version=0.9.4
+Type=Application
+Name=Conectar_Z
+Comment=
+Exec=/usr/local/bin/z
+OnlyShowIn=XFCE;
+StartupNotify=false
+Terminal=true
+Hidden=false
+Icon=
+Path=" > /tmp/Conectar_Z.desktop
+
+for i in $(ls /home/| grep -v lost)
+  do
+	cp /tmp/Conectar_Z.desktop  /home/$i/Escritorio > /dev/null 2>&1
+	usermod -a -G sudo $i> /dev/null 2>&1
+	grep $i /etc/sudoers> /dev/null 2>&1
+	if [ "$?" == "1" ]; then
+	echo $i	ALL=\(ALL\) NOPASSWD: ALL>> /etc/sudoers
+	fi
+  done
+
+
+
